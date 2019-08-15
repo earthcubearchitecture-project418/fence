@@ -1,0 +1,40 @@
+#threegrid {
+    margin-top: 15px;
+    display: grid;
+    grid-template-areas: "a a a";
+    grid-gap: 10px;
+    grid-auto-columns: minmax(10px, auto);
+}
+
+#gridwrapper {
+   display: block;
+}
+
+#grid {
+    margin-top: 15px;
+    height: 100px;
+    display: grid;
+    grid-template-areas: "a a";
+    grid-gap: 10px;
+    grid-auto-columns: minmax(10px, auto);
+    position: relative;
+}
+
+#grid>div {
+    background-color: lime;
+}
+
+#wrapper_1 {
+    clear: left;
+    float: left;
+    position: relative;
+    left: 50%;
+    display: block;
+}
+
+#container_1 {
+    display: block;
+    float: left;
+    position: relative;
+    right: 50%;
+}

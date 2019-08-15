@@ -1,0 +1,136 @@
+@import url('https://rsms.me/inter/inter.css');
+html {
+    font-family: 'Inter', sans-serif;
+}
+
+@supports (font-variation-settings: normal) {
+    html {
+        font-family: 'Inter var', sans-serif;
+    }
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    margin: 0px;
+    height: 100%;
+}
+
+.sidebar {
+    grid-area: sidebar;
+}
+
+.sidebar2 {
+    grid-area: sidebar2;
+}
+
+.content {
+    grid-area: content;
+}
+
+.header {
+    grid-area: header;
+}
+
+.subheader {
+    grid-area: subheader;
+}
+
+.footer {
+    grid-area: footer;
+}
+
+.wrapper {
+    background-color: #fff;
+    color: #444;
+}
+
+.wrapper {
+    display: grid;
+    grid-gap: .5em;
+    grid-template-areas: "header" "subheader" "sidebar" "content" "sidebar2" "footer"
+}
+
+@media only screen and (min-width: 500px) {
+    .wrapper {
+        grid-template-columns: 20% auto;
+        grid-template-areas: "header   header" "subheader subheader" "sidebar  content" "sidebar2 sidebar2" "footer   footer";
+    }
+}
+
+@media only screen and (min-width: 600px) {
+    .wrapper {
+        grid-gap: 0px;
+        grid-template-columns: 220px auto 220px;
+        grid-template-areas: "header  header  header" "subheader  subheader  subheader" "sidebar content sidebar2" "footer  footer  footer";
+        max-width: 100%;
+    }
+}
+
+.box {
+    background-color: #444;
+    color: #fff;
+    border-radius: 1px;
+    padding: 0px;
+    font-size: 150%;
+}
+
+.header {
+    height: 50px;
+}
+
+.header {
+    background-color: #000000;
+    height: 50px;
+}
+
+.header>.container>.headerp {
+    text-align: center;
+    font-size: 12px;
+}
+
+.header>.container>.headerp>.link {
+   color: #fff;
+   margin-right: 10px;
+   margin-left: 10px;
+}
+
+
+
+.bodyfooter {
+    background-color: #000000;
+    height: 50px;
+    position: absolute; 
+    width: 100%
+    bottom: 0;
+}
+
+.subheader {
+    background-color: #282C34;
+    color: #228B22;
+    height: 300px;
+}
+
+.container {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+}
+
+h1,
+h3 {
+      text-align: center;
+}
+
+
+.content,
+.sidebar,
+.sidebar2 {
+    background-color: #ffffff;
+    color: #444;
+}
+
+
