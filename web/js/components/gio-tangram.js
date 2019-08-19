@@ -8,11 +8,6 @@ import {
         constructor() {
             super();
 
-            // ref: https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch
-            // https://scotch.io/tutorials/how-to-use-the-javascript-fetch-api-to-get-data
-            // https://stackoverflow.com/questions/45018338/javascript-fetch-api-how-to-save-output-to-variable-as-an-object-not-the-prom
-            // https://stackoverflow.com/questions/38869197/fetch-set-variable-with-fetch-response-and-return-from-function
-
             var printError = function (error, explicit) {
                 console.log(`[${explicit ? 'EXPLICIT' : 'INEXPLICIT'}] ${error.name}: ${error.message}`);
             };
@@ -30,9 +25,6 @@ import {
                         return bodytext;
                     });
             }
-
-            // TODO read in a component attribute to get the URL passed
-            // can a component read the URL of the parent page?
 
             const shape = this.getAttribute('google-shape');
             console.log(shape);

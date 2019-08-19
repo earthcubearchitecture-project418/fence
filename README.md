@@ -2,9 +2,16 @@
 
 ## About
 
-The stand alone Fence tool for playing with data graphs.
+More information will be coming soon on how to use Fence.  It is a very early stage at this time.  
+You can visit it for now at http://fence.gleaner.io/fence .
 
-It needs to take a URL, get the data graph and return it in the fence page which will then load 
-a collection of web components to display views on the data graph.
+To try it testing a live resource use:
+ http://fence.gleaner.io/fence?url=http://opencoredata.org/doc/dataset/b8d7bd1b-ef3b-4b08-a327-e28e1420adf0 
+
+or 
+
+http://fence.gleaner.io/fence?url=https://www.bco-dmo.org/dataset/722472 
+
+as examples.  
 
 

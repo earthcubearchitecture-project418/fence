@@ -113,43 +113,43 @@ func isValid(jsonld string) error {
 
 // sdo is a testing function to return a sample scheme.org
 // type dataset for testing and initial development
-func sdo() string {
+// func sdo() string {
 
-	sdo := `
-{
-    "@context": {
-        "@vocab": "http://schema.org/",
-        "re3data": "http://example.org/re3data/0.1/"
-    },
-    "@id": "http://opencoredata.org/pkg/id/a4c8a2794619d25846c00d9ce43ed1a166b9ccd84aab964d8353307cae7743e1",
-    "@type": "Dataset",
-    "description": "A CSDCO data package for  project HAWS (HAWS (Hawaii Soils))",
-    "distribution": {
-        "@type": "DataDownload",
-        "contentUrl": "http://opencoredata.org/pkg/id/a4c8a2794619d25846c00d9ce43ed1a166b9ccd84aab964d8353307cae7743e1.zip",
-        "fileFormat": "application/vnd.datapackage+json"
-    },
-    "keywords": "CSDCO, Continental Scientific Drilling",
-    "license": "https://creativecommons.org/publicdomain/zero/1.0/",
-    "name": "a4c8a2794619d25846c00d9ce43ed1a166b9ccd84aab964d8353307cae7743e1.zip",
-    "publisher": {
-        "@type": "Organization",
-        "description": "Continental Scientific Drilling Coordination Office",
-        "name": "CSDCO",
-        "url": "https://csdco.umn.edu/"
-    },
-    "spatialCoverage": {
-        "@type": "Place",
-        "geo": {
-            "@type": "GeoCoordinates",
-            "latitude": "0.0",
-            "longitude": "0.0"
-        }
-    },
-    "url": "http://opencoredata.org/pkg/id/a4c8a2794619d25846c00d9ce43ed1a166b9ccd84aab964d8353307cae7743e1",
-    "variableMeasured": null
-}
-	`
+// 	sdo := `
+// {
+//     "@context": {
+//         "@vocab": "http://schema.org/",
+//         "re3data": "http://example.org/re3data/0.1/"
+//     },
+//     "@id": "http://opencoredata.org/pkg/id/a4c8a2794619d25846c00d9ce43ed1a166b9ccd84aab964d8353307cae7743e1",
+//     "@type": "Dataset",
+//     "description": "A CSDCO data package for  project HAWS (HAWS (Hawaii Soils))",
+//     "distribution": {
+//         "@type": "DataDownload",
+//         "contentUrl": "http://opencoredata.org/pkg/id/a4c8a2794619d25846c00d9ce43ed1a166b9ccd84aab964d8353307cae7743e1.zip",
+//         "fileFormat": "application/vnd.datapackage+json"
+//     },
+//     "keywords": "CSDCO, Continental Scientific Drilling",
+//     "license": "https://creativecommons.org/publicdomain/zero/1.0/",
+//     "name": "a4c8a2794619d25846c00d9ce43ed1a166b9ccd84aab964d8353307cae7743e1.zip",
+//     "publisher": {
+//         "@type": "Organization",
+//         "description": "Continental Scientific Drilling Coordination Office",
+//         "name": "CSDCO",
+//         "url": "https://csdco.umn.edu/"
+//     },
+//     "spatialCoverage": {
+//         "@type": "Place",
+//         "geo": {
+//             "@type": "GeoCoordinates",
+//             "latitude": "0.0",
+//             "longitude": "0.0"
+//         }
+//     },
+//     "url": "http://opencoredata.org/pkg/id/a4c8a2794619d25846c00d9ce43ed1a166b9ccd84aab964d8353307cae7743e1",
+//     "variableMeasured": null
+// }
+// 	`
 
-	return sdo
-}
+// 	return sdo
+// }

@@ -28,6 +28,9 @@
     <script type="module" src="js/components/gd-openlayers.js"></script>
 
 
+  <script src="https://unpkg.com/rbush@2.0.1/rbush.js"></script>
+      <link rel="stylesheet" href="https://openlayers.org/en/v5.3.0/css/ol.css" type="text/css">
+
     <script type="application/ld+json">
         {{.}}
     </script>
@@ -60,8 +63,11 @@
 
                 <div style="margin:30px">
                     <p>About:</p>
-                    It access the URL and attempts to extract a JSON-LD schema.org package* Use a url like:<br>
-                    <pre>https://fence.gleaner.io/fence?url=http://opencoredata.org/doc/dataset/b8d7bd1b-ef3b-4b08-a327-e28e1420adf0</pre>
+                    It access the URL and attempts to extract a JSON-LD schema.org package from the provided URL.  You can 
+                    try examples from <a href="./fence?url=http://opencoredata.org/doc/dataset/b8d7bd1b-ef3b-4b08-a327-e28e1420adf0">Open Core Data example</a> 
+                        or this <a href="./fence?url=https://www.bco-dmo.org/dataset/722472">BCO-DMO example.</a> 
+
+
                 </div>
 
             </div>
@@ -69,7 +75,7 @@
             <div id="container1">
 
                 <div class="cebox">
-                    OpenLayers Test (not working, place holder only):</br><br>
+                    OpenLayers Test (not working, just a  place holder for now):</br><br>
                     <geodex-olmap></geodex-olmap>
                 </div>
 
@@ -83,10 +89,10 @@
                      <gleaner-tangram google-shape="recommended"></gleaner-tangram>
                  </div>
 
-                <div class="cebox">
+                <!-- <div class="cebox">
                     RESTful GET (a static call, always the same..  just testing cors) </br><br>
                     <geodex-simpleget></geodex-simpleget>
-                </div>
+                </div> -->
 
 
                 <!-- <div class="cebox">
@@ -95,6 +101,7 @@
                         <geodex-map></geodex-map>
                     </div>
                 </div> -->
+
 
                 <div class="cebox">
                     Keywords from obj.keywords:<br><br>
@@ -109,7 +116,7 @@
                 </div>
 
                 <div class="cebox">
-                    <p> Web component to make SVG with obj.distribution.contentUrl link<br><br>
+                    <p> Web component to make SVG with obj.distribution.contentUrl link (green check mark should link to content URL)<br><br>
                         <geodex-logo></geodex-logo>
                     </p>
                 </div>
