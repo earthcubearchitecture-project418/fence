@@ -11,22 +11,25 @@ import (
 	"github.com/piprate/json-gold/ld"
 )
 
+type PageData struct {
+	SDO string
+	URL string
+}
+
 // Render NOTE the so slice does nothing..  the template is just static content.
 // This function is here only in the thought this could be a dynamic list at some point.
 func Render(w http.ResponseWriter, r *http.Request) {
 	log.Println("in fence render")
 	templateFile := "./web/templates/fence.html"
 
-	//url := r.URL.Query().Get("url")
+	var err error
 	vars := mux.Vars(r)
 	url := r.FormValue("url")
-	//url := vars["url"]
-	sdo := ""
-	var err error
 
 	log.Println(vars)
 	log.Println(url)
 
+	sdo := ""
 	if url != "" {
 		sdo, err = getSDO(url)
 		if err != nil {
@@ -34,12 +37,14 @@ func Render(w http.ResponseWriter, r *http.Request) {
 		}
 	}
 
+	data := PageData{SDO: sdo, URL: url}
+
 	ht, err := template.New("Template").ParseFiles(templateFile) //open and parse a template text file
 	if err != nil {
 		log.Printf("template parse failed: %s", err)
 	}
 
-	err = ht.ExecuteTemplate(w, "Q", sdo)
+	err = ht.ExecuteTemplate(w, "Q", data)
 	if err != nil {
 		log.Printf("Template execution failed: %s", err)
 	}

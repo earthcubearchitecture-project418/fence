@@ -1,0 +1,24 @@
+
+
+
+I can make it load the JSON-LD to json-ld playground if
+
+I get fence to display the raw content of the JSON-LD and form a URL like
+
+https://json-ld.org/playground/#startTab=tab-expanded
+&json-ld=https%3A%2F%2Fraw.githubusercontent.com%2FESIPFed%2Fscience-on-schema.org%2Fmaster%2Fexamples%2Fdataset%2Fminimal.jsonld
+&context=%7B%7D
+
+
+Since I don't know how this content negotiates (and doubt it does) then make a NEW fence URL
+that modifies the default URL of 
+
+https://fence.gleaner.io/fence?url=http://opencoredata.org/id/dataset/b8d7bd1b-ef3b-4b08-a327-e28e1420adf0
+
+to 
+
+https://fence.gleaner.io/fencepuller?url=http://opencoredata.org/id/dataset/b8d7bd1b-ef3b-4b08-a327-e28e1420adf0
+
+
+The Go code is in p418/internal/summoner/acquire   it's not much different in the Tangram python code....
+

@@ -24,6 +24,7 @@
     <script src="js/components/gd-citation.js"></script>
     <script type="module" src="js/components/gd-simpleget.js"></script>
     <script type="module" src="js/components/gio-tangram.js"></script>
+    <script type="module" src="js/components/gio-panterms.js"></script>
     <script type="module" src="js/components/gd-map.js"></script>
     <script type="module" src="js/components/gd-openlayers.js"></script>
 
@@ -32,7 +33,7 @@
       <link rel="stylesheet" href="https://openlayers.org/en/v5.3.0/css/ol.css" type="text/css">
 
     <script type="application/ld+json">
-        {{.}}
+        {{.SDO}}
     </script>
 
 </head>
@@ -66,8 +67,6 @@
                     It access the URL and attempts to extract a JSON-LD schema.org package from the provided URL.  You can 
                     try examples from <a href="./fence?url=http://opencoredata.org/doc/dataset/b8d7bd1b-ef3b-4b08-a327-e28e1420adf0">Open Core Data example</a> 
                         or this <a href="./fence?url=https://www.bco-dmo.org/dataset/722472">BCO-DMO example.</a> 
-
-
                 </div>
 
             </div>
@@ -75,9 +74,25 @@
             <div id="container1">
 
                 <div class="cebox">
-                    OpenLayers Test (not working, just a  place holder for now):</br><br>
+                    Panterms  (Place holder, in development)</br>
+                    <gio-panterms></gio-panterms>
+                </div>
+
+
+                <div class="cebox">
+                    OpenLayers Test (not working, just a  place holder for now):</br>
                     <geodex-olmap></geodex-olmap>
                 </div>
+
+                <div class="cebox">
+               You can view in the  
+               <a target="_blank" href="https://json-ld.org/playground/#startTab=tab-expanded&json-ld=http://fence.gleaner.io/fencepull?url={{.URL}}&context=%7B%7D"> JSON-LD Playground</a>
+                </div>
+
+                <div class="cebox">
+               View the page in the <a target="_blank" href="https://search.google.com/structured-data/testing-tool#url={{.URL}}"> Google Structured Data Testing Tool </a>
+                </div>
+
 
                 <div class="cebox">
                    Gleaner.io Tangram call (recommened):</br><br>
@@ -128,19 +143,14 @@
                         </div>
                     </p>
                 </div>
-
-
+                
+                
             </div>
 
-
             <div id="container2">
-                <hr> The resource's JSON-LD entry is displayed below and can be viewed in the
-                <a target="_blank" href='https://json-ld.org/playground/#startTab=tab-expanded&json-ld={{.}}'> JSON-LD
-                    Playground</a>
-                <hr>
-                <pre>
+                                <pre>
 				 <code>
-					 {{.}}
+					 {{.SDO}}
 				 </code>
 				 </pre>
             </div>

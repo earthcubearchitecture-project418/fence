@@ -23,10 +23,13 @@ func main() {
 	fc.HandleFunc("/fence", fence.Render)
 	http.Handle("/fence", fc)
 
+	fp := mux.NewRouter()
+	fp.HandleFunc("/fencepull", fence.Pull)
+	http.Handle("/fencepull", fp)
+
 	port := os.Getenv("PORT")
 	if port == "" {
 		port = "8080"
-
 	}
 
 	log.Printf("Listening on 8080. Go to http://127.0.0.1:8080/")
