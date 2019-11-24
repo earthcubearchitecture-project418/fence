@@ -49,7 +49,9 @@ func Render(w http.ResponseWriter, r *http.Request) {
 			sdo = string(body)
 
 		} else {
-			sdo, err = getSDO(url)
+			// sdo, err = getSDO(url)
+			sdo, err = headless(url)
+			// sdo, err = getLink(url)
 			if err != nil {
 				sdo = "{}"
 			}

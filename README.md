@@ -23,6 +23,24 @@ https://fence.gleaner.io/fence?url=https://www.bco-dmo.org/dataset/722472
 
 as examples.  
 
-# Fence pull
+## Fence pull
+
+### About
+
+This is a function that allows you to pull the JSON-LD from a given page.  This
+is a utility function and documentation is coming.  
+
+## Headless 
+
+### About
+
+We will add headless procesing to this soon and just switch over to using this
+fully.  It will complicate deployment a bit as I will need to be able to deploy
+the chromedp container to be the headless server.   
+
+```
+docker pull chromedp/headless-shell
+```
+
 
 

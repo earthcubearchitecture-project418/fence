@@ -22,3 +22,7 @@ https://fence.gleaner.io/fencepuller?url=http://opencoredata.org/id/dataset/b8d7
 
 The Go code is in p418/internal/summoner/acquire   it's not much different in the Tangram python code....
 
+Headless test URL
+
+https://arcticdata.io/catalog/view/doi:10.18739/A28P5V92S
+
