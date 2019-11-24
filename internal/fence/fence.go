@@ -2,8 +2,10 @@ package fence
 
 import (
 	"encoding/json"
+	"io/ioutil"
 	"log"
 	"net/http"
+	"strings"
 
 	"github.com/PuerkitoBio/goquery"
 	"github.com/alecthomas/template"
@@ -30,10 +32,27 @@ func Render(w http.ResponseWriter, r *http.Request) {
 	log.Println(url)
 
 	sdo := ""
+
+	// here is where I check for the isJSONLD flag and just
+	// read the URL if it is
 	if url != "" {
-		sdo, err = getSDO(url)
-		if err != nil {
-			sdo = "{}"
+		if strings.HasSuffix(url, ".jsonld") {
+			resp, err := http.Get(url)
+			if err != nil {
+				sdo = "{}" // crappy way to deal with it..  need to return info to the user..   TODO!
+			}
+			defer resp.Body.Close()
+			body, err := ioutil.ReadAll(resp.Body)
+			if err != nil {
+				sdo = "{}" // crappy way to deal with it..  need to return info to the user..   TODO!
+			}
+			sdo = string(body)
+
+		} else {
+			sdo, err = getSDO(url)
+			if err != nil {
+				sdo = "{}"
+			}
 		}
 	}
 

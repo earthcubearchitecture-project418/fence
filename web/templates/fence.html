@@ -57,16 +57,23 @@
             <div>
                 <form action="/fence" method="get">
                     <div>
-                        <label for="url">URL:</label>
+                        <label for="url">URL to check:</label>
                         <input type="text" id="url" name="url">
                     </div>
                 </form>
 
                 <div style="margin:30px">
                     <p>About:</p>
-                    It access the URL and attempts to extract a JSON-LD schema.org package from the provided URL.  You can 
+                    <p> Fence is designed to test JSON-LD with a focus on schema.org/Dataset</p> 
+                    <p>
+                    Fence will attempt to extract a JSON-LD schema.org package from the provided URL.  It will then use 
+                    that data graph to run validation and viewing tests.
+                    </p>
+                    <p>
+                    You can 
                     try examples from <a href="./fence?url=http://opencoredata.org/doc/dataset/b8d7bd1b-ef3b-4b08-a327-e28e1420adf0">Open Core Data example</a> 
                         or this <a href="./fence?url=https://www.bco-dmo.org/dataset/722472">BCO-DMO example.</a> 
+                    </p>
                 </div>
 
             </div>
@@ -74,35 +81,23 @@
             <div id="container1">
 
                 <div class="cebox">
-                    Panterms  (Place holder, in development)</br>
-                    <gio-panterms></gio-panterms>
-                </div>
-
-
-                <div class="cebox">
-                    OpenLayers Test (not working, just a  place holder for now):</br>
-                    <geodex-olmap></geodex-olmap>
-                </div>
-
-                <div class="cebox">
-               You can view in the  
+               View this JSON-LD in the 
                <a target="_blank" href="https://json-ld.org/playground/#startTab=tab-expanded&json-ld=http://fence.gleaner.io/fencepull?url={{.URL}}&context=%7B%7D"> JSON-LD Playground</a>
                 </div>
 
                 <div class="cebox">
-               View the page in the <a target="_blank" href="https://search.google.com/structured-data/testing-tool#url={{.URL}}"> Google Structured Data Testing Tool </a>
+               Check this against the  <a target="_blank" href="https://search.google.com/structured-data/testing-tool#url={{.URL}}"> Google Structured Data Testing Tool </a>
                 </div>
 
-
                 <div class="cebox">
-                   Gleaner.io Tangram call (recommened):</br><br>
+                   Validate with Tangram against Google type Dataset required shape:</br><br>
                     <gleaner-tangram google-shape="required"></gleaner-tangram>
                 </div>
 
                 <div class="cebox">
-                    Gleaner.io Tangram call (required):</br><br>
+                   Validate with Tangram against Google type Dataset recommended shape:</br><br>
                      <gleaner-tangram google-shape="recommended"></gleaner-tangram>
-                 </div>
+                </div>
 
                 <!-- <div class="cebox">
                     RESTful GET (a static call, always the same..  just testing cors) </br><br>
@@ -119,13 +114,12 @@
 
 
                 <div class="cebox">
-                    Keywords from obj.keywords:<br><br>
+                    Keywords for possible NER checks <br><br>
                     <geodex-keywords></geodex-keywords>
                 </div>
 
                 <div class="cebox">
-                    Citation Test (ref: <a
-                        href="http://commons.esipfed.org/node/308">http://commons.esipfed.org/node/308</a>):
+                    Citation Test (ref: <a href="http://commons.esipfed.org/node/308">http://commons.esipfed.org/node/308</a>):
                     <br><br>
                     <geodex-citation></geodex-citation>
                 </div>
@@ -137,7 +131,7 @@
                 </div> -->
 
                 <div class="cebox">
-                    <p> Web component to make SVG with obj.name extension<br><br>
+                    <p> Web component to test making SVG with file extension<br><br>
                         <div style="height:75px">
                             <geodex-fileext></geodex-fileext>
                         </div>

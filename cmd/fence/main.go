@@ -32,7 +32,7 @@ func main() {
 		port = "8080"
 	}
 
-	log.Printf("Listening on 8080. Go to http://127.0.0.1:8080/")
+	log.Printf("Listening on %s. Go to http://127.0.0.1:%s", port, port)
 	err := http.ListenAndServe(":"+port, nil)
 	// http 2.0 http.ListenAndServeTLS(":443", "server.crt", "server.key", nil)
 	if err != nil {

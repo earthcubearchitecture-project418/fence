@@ -1,3 +1,4 @@
+/*jshint esversion: 6 */
 import {
 	html,
 	render
@@ -8,6 +9,7 @@ import {
         constructor() {
             super();
 
+            // Error setup
             var printError = function (error, explicit) {
                 console.log(`[${explicit ? 'EXPLICIT' : 'INEXPLICIT'}] ${error.name}: ${error.message}`);
             };
@@ -39,8 +41,13 @@ import {
                     // do something with the providers
                     this.attachShadow({ mode: 'open' });
                     // var h =  `<div>${itemTemplates}</div>`;
-                    this.shadowRoot.innerHTML = `<div style="width=100%;overflow:auto;"><pre>${providers}</pre></div>` ;
                     // this.shadowRoot.appendChild(this.cloneNode(h));
+                    if (providers.indexOf("Conforms: True") !== -1) {
+                        this.shadowRoot.innerHTML = `<div style="background:#F8FFD4;width=100%;overflow:auto;"><pre>${providers}</pre></div>` ;
+                    }
+                    if (providers.indexOf("Conforms: False") !== -1) {
+                        this.shadowRoot.innerHTML = `<div style="background:#FFDCD4;width=100%;overflow:auto;"><pre>${providers}</pre></div>` ;
+                    }
                 });
             }
             else {
@@ -49,7 +56,7 @@ import {
                 this.shadowRoot.innerHTML = `<div style="width=100%;overflow:auto;"><pre>No URL provided to check</pre></div>` ;
             }
 
-          
+
         }
     }
     window.customElements.define('gleaner-tangram', Tangram);
