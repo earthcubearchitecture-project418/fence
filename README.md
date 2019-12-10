@@ -41,6 +41,3 @@ the chromedp container to be the headless server.
 ```
 docker pull chromedp/headless-shell
 ```
-
-
-

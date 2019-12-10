@@ -14,6 +14,7 @@ dockerlatest:
 
 publish:  
 		docker push fils/p418fence:$(DOCKERVER)
+		docker push fils/p418fence:latest
 
 tag:
 	docker tag fils/p418fence:$(DOCKERVER) gcr.io/top-operand-112611/p418fence:$(DOCKERVER)

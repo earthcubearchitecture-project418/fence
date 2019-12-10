@@ -1,4 +1,6 @@
 
+How to headless check for:
+<script type="application/ld+json">
 
 
 I can make it load the JSON-LD to json-ld playground if
