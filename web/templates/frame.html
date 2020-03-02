@@ -1,0 +1,91 @@
+{{define "Q"}}
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Fence: Frame Report</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width" initial-scale="1.0">
+
+    <link rel="shortcut icon" href="/images/gd.png">
+
+    <link rel="stylesheet" href="./css/fencegrid.css ">
+    <link rel="stylesheet" href="./css/nav.css ">
+    <link rel="stylesheet" href="./css/componentshowcase.css ">
+
+    <!-- use google  font -->
+    <link href="//fonts.googleapis.com/css?family=Open Sans&subset=latin" rel="stylesheet" type="text/css">
+    <link rel='stylesheet' href='//cdn.jsdelivr.net/font-hack/2.020/css/hack.min.css'>
+
+    <script src="https://unpkg.com/rbush@2.0.1/rbush.js"></script>
+    <link rel="stylesheet" href="https://openlayers.org/en/v5.3.0/css/ol.css" type="text/css">
+
+</head>
+
+<body>
+    <div class="grid ">
+        <div class="title ">
+            <nav class="container">
+                <div class="m1">
+                    <a href="/" class="navLinks"> << fence.gleaner.io</a>
+                </div>
+            </nav>
+        </div>
+        <div class="header">
+            <h1>Frame Report</h1>
+        </div>
+        <div class="lsidebar"> </div>
+        <div class="sidebar"> </div>
+
+        <div class="content">
+            <div>
+                <!-- <form action="/sitemap" method="get">
+                    <div>
+                        <label for="url">Sitemap check:</label><br>
+                        <input type="text" id="url" name="url"> <br>
+                        <label for="date">Date (format: 01 Jan 20 10:00 UTC)</label><br>
+                        <input type="text" id="date" name="date">
+                        <br>
+                        <div>
+                            <button>Test</button>
+                          </div>
+                    </div>
+                </form> -->
+
+
+
+
+            </div>
+
+            <div id="container1">
+                <div class="cebox">
+                    Name: {{.Name}}
+                </div>
+
+                <div class="cebox">
+                    Type: {{.Type}}
+                </div>
+
+                <div class="cebox">
+                    Keywords: {{.Keywords}}
+                </div>
+
+                <div class="cebox">
+                    Description: {{.Description}}
+                
+                </div>
+
+             
+          
+            </div>
+
+        </div>
+        <div class="footer ">
+            <small>Project 418 is funded by the National Science Foundation through the EarthCube Science Support Office
+                (ESSO)</small>
+        </div>
+    </div>
+</body>
+
+</html>
+{{end}}

@@ -1,5 +1,5 @@
 BINARY := fence
-DOCKERVER :=`cat VERSION`
+DOCKERVER :=`/bin/cat VERSION`
 .DEFAULT_GOAL := linux
 
 linux:

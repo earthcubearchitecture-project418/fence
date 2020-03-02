@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Fence tool</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width" initial-scale="1.0">
+
+    <link rel="shortcut icon" href="/images/gd.png">
+
+    <link rel="stylesheet" href="./css/fencegrid.css ">
+    <link rel="stylesheet" href="./css/nav.css ">
+    <link rel="stylesheet" href="./css/componentshowcase.css ">
+
+    <!-- use google  font -->
+    <link href="//fonts.googleapis.com/css?family=Open Sans&subset=latin" rel="stylesheet" type="text/css">
+    <link rel='stylesheet' href='//cdn.jsdelivr.net/font-hack/2.020/css/hack.min.css'>
+
+</head>
+
+<body>
+    <div class="grid ">
+        <div class="title ">
+            <nav class="container">
+                <div class="m1">
+                    <a href="http://gleaner.io" class="navLinks">Gleaner.io</a>
+                </div>
+            </nav>
+        </div>
+        <div class="header">
+            <h1>Fence</h1>
+        </div>
+        <div class="lsidebar"> </div>
+        <div class="sidebar"> </div>
+
+        <div class="content">
+            <div>
+                <form action="/fence" method="get">
+                    <div>
+                        <label for="url">Dataset check:</label><br>
+                        <input type="text" id="url" name="url">
+                    </div>
+                </form>
+
+                <div style="margin:30px">
+                    <p>About:</p>
+                    Dataset Check attempts to extract a JSON-LD schema.org type dataaset package from the provided URL.  You can 
+                    try examples from <a href="./fence?url=http://opencoredata.org/doc/dataset/b8d7bd1b-ef3b-4b08-a327-e28e1420adf0">Open Core Data example</a> 
+                        or this <a href="./fence?url=https://www.bco-dmo.org/dataset/722472">BCO-DMO example.</a> 
+                </div>
+            </div>
+
+            <div>
+                <form action="/sitemap" method="get">
+                    <div>
+                        <label for="url">Sitemap check:</label><br>
+                        <input type="text" id="url" name="url"> <br>
+                        <label for="date">Date (format: 01 Jan 20 10:00 UTC)</label><br>
+                        <input type="text" id="date" name="date">
+                        <br>
+                        <div>
+                            <button>Test</button>
+                          </div>
+                    </div>
+                </form>
+
+                <div style="margin:30px">
+                    <p>About:</p>
+                    Sitemap check will test your sitemap structure and optionally last mod entry for the resources against a provided date.
+                    <a href="./sitemap?url=https://www.bco-dmo.org/sitemap.xml/722472&date=01 Jan 20 10:00 UTC">BCO-DMO example.</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer ">
+            <small>Project 418 is funded by the National Science Foundation through the EarthCube Science Support Office
+                (ESSO)</small>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,138 @@
+{{define Q}}
+<html>
+<head>
+  <title>Fence</title>
+  <link rel="stylesheet" type="text/css" href="test.css">
+  <link rel="stylesheet" type="text/css" href="content.css">
+  <link rel="stylesheet" type="text/css" href="media.css">
+
+  <script src="https://unpkg.com/rbush@2.0.1/rbush.js"></script>
+      <link rel="stylesheet" href="https://openlayers.org/en/v5.3.0/css/ol.css" type="text/css">
+      <script defer src="https://unpkg.com/@custom-element/leaflet"></script>
+
+
+  
+</head>
+
+<body>
+  <div class="wrapper">
+    <div class="box header">
+      <div class="container">
+        <p class="headerp">
+          <a class="link" href="#about">About</a>
+          <a class="link" target="_blank" href="https://github.com/earthcubearchitecture-project418">Code</a>
+        </p>
+      </div>
+    </div>
+    <div class="box subheader">
+      <div class="container">
+        <h1>Gleaner.io</h1>
+        <h3>Structured data tooling</h3>
+      </div>
+    </div>
+    <div class="box sidebar"> </div>
+    <div class="box sidebar2"> </div>
+    <div class="box content">
+
+      <div id="threegrid">
+        <div id="wrapper_1"><img height="100px" src="./images/G.svg">
+          <p>Gleaner</p>
+        </div>
+        <div id="wrapper_1"><img height="100px" src="./images/T.svg">
+          <p>Tangram</p>
+        </div>
+        <div id="wrapper_1"><img height="100px" src="./images/F.svg">
+          <p>Fence</p>
+        </div>
+      </div>
+
+      <div class="media">
+
+        <div class="img">
+          <img src="./images/G.svg" alt="Placeholder">
+        </div>
+        <h2 class="title">Gleaner</h2>
+        <div class="content">
+          <p>Gleaner is the structured data on the web indexing tool developed as part of NSF EarthCube. Its focus is on
+            collection JSON-LD encoding data graphs describing data resources and services. Gleaner can then process and
+            generate a semantic network based on a list of providers.</p>
+        </div>
+        <div class="footer">
+          <a target="_blank" href="https://github.com/earthcubearchitecture-project418">
+            GitHub Repo</a>
+        </div>
+      </div>
+
+      <div class="media media-flip">
+
+        <div class="img">
+          <img src="./images/T.svg" alt="Placeholder">
+        </div>
+        <h2 class="title">Tangram</h2>
+        <div class="content">
+          <p>The Tangram services is a web services wrapper around the <a target="_blank"
+              href="https://github.com/RDFLib/pySHACL">pySHACL</a>
+            package. It allows you to send in JSON-LD data graphs to test against a Turtle (ttl) encoded shape graph.
+            See the <a target="_blank" href="https://github.com/geoschemas-org/geoshapes/tree/master/src/tangram">
+              GitHub Repo</a> for some more details on using this service.
+          </p>
+        </div>
+        <div class="footer">
+          <a target="_blank" href="https://github.com/geoschemas-org/geoshapes/tree/master/src/tangram">
+            GitHub Repo</a>
+        </div>
+      </div>
+
+      <div class="media">
+
+        <div class="img">
+          <img src="./images/F.svg" alt="Placeholder">
+        </div>
+        <h2 class="title">Fence</h2>
+        <div class="content">
+          <p>Fence is a tool designed to allow people to evaluate there structured data graphs against various
+            validations, tools and
+            interface components. It is a work in progress at this time. A very early
+            <a target="_blank" href="https://github.com/earthcubearchitecture-project418">ALPHA</a>
+            is online, but lacks several new developments.
+            A newer version will be deployed to this domain and the repo pushed out.
+          </p>
+        </div>
+
+        <div class="footer">
+          Repo not yet pushed
+        </div>
+      </div>
+
+      <div class="media media-flip">
+        <a name="about"></a>
+        <div class="img">
+          <img src="./images/eclogo.png" alt="Placeholder">
+        </div>
+        <h2 class="title">About</h2>
+        <div class="content">
+          <p>The Gleaner tooling and the associated developments in the vocabulary work at
+            <a
+              href="https://github.com/ESIPFed/science-on-schema.org">https://github.com/ESIPFed/science-on-schema.org</a>
+            are funded by the National Science Foundation EarthCube. Earthcube is a quickly growing community of
+            scientists across all geoscience domains, as well as geoinformatics researchers and data scientists. We are
+            a joint effort between the NSF Directorate for Geosciences and the Division of Advanced Cyberinfrastructure.
+          </p>
+        </div>
+        <div class="footer">
+          <a target="_blank" href="https://earthcube.org">
+            EarthCube</a>
+        </div>
+      </div>
+
+
+    </div>
+
+  </div>
+  <!-- <div class="box bodyfooter">
+    <p>Funded by NSF / EarthCube</p>
+  </div> -->
+
+</body>
+
+</html>

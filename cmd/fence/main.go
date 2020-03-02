@@ -27,6 +27,19 @@ func main() {
 	fp.HandleFunc("/fencepull", fence.Pull)
 	http.Handle("/fencepull", fp)
 
+	cp := mux.NewRouter()
+	cp.HandleFunc("/sitemap", fence.Check)
+	http.Handle("/sitemap", cp)
+
+	// TODO   combine frames into one with routing based on form request
+	fr := mux.NewRouter()
+	fr.HandleFunc("/frame", fence.Frame)
+	http.Handle("/frame", fr)
+
+	// sf := mux.NewRouter()
+	// sf.HandleFunc("/spatialframe", fence.SpatialRes)
+	// http.Handle("/spatialframe", sf)
+
 	port := os.Getenv("PORT")
 	if port == "" {
 		port = "8080"

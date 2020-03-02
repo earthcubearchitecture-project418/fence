@@ -1,61 +1,130 @@
-<!doctype html>
-<html lang="en">
+<html>
 
 <head>
-    <title>Fence tool</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width" initial-scale="1.0">
-
-    <link rel="shortcut icon" href="/images/gd.png">
-
-    <link rel="stylesheet" href="./css/fencegrid.css ">
-    <link rel="stylesheet" href="./css/nav.css ">
-    <link rel="stylesheet" href="./css/componentshowcase.css ">
-
-    <!-- use google  font -->
-    <link href="//fonts.googleapis.com/css?family=Open Sans&subset=latin" rel="stylesheet" type="text/css">
-    <link rel='stylesheet' href='//cdn.jsdelivr.net/font-hack/2.020/css/hack.min.css'>
-
+  <title>Gleaner</title>
+  <link rel="stylesheet" type="text/css" href="./css/test.css">
+  <link rel="stylesheet" type="text/css" href="./css/content.css">
+  <link rel="stylesheet" type="text/css" href="./css/media.css">
 </head>
 
 <body>
-    <div class="grid ">
-        <div class="title ">
-            <nav class="container">
-                <div class="m1">
-                    <a href="http://gleaner.io" class="navLinks">Gleaner.io</a>
-                </div>
-            </nav>
-        </div>
-        <div class="header">
-            <h1>Fence</h1>
-        </div>
-        <div class="lsidebar"> </div>
-        <div class="sidebar"> </div>
-
-        <div class="content">
-            <div>
-                <form action="/fence" method="get">
-                    <div>
-                        <label for="url">URL to check:</label>
-                        <input type="text" id="url" name="url">
-                    </div>
-                </form>
-
-                <div style="margin:30px">
-                    <p>About:</p>
-                    It access the URL and attempts to extract a JSON-LD schema.org package from the provided URL.  You can 
-                    try examples from <a href="./fence?url=http://opencoredata.org/doc/dataset/b8d7bd1b-ef3b-4b08-a327-e28e1420adf0">Open Core Data example</a> 
-                        or this <a href="./fence?url=https://www.bco-dmo.org/dataset/722472">BCO-DMO example.</a> 
-                </div>
-            </div>
-
-        </div>
-        <div class="footer ">
-            <small>Project 418 is funded by the National Science Foundation through the EarthCube Science Support Office
-                (ESSO)</small>
-        </div>
+  <div class="wrapper">
+    <div class="box header">
+      <div class="container">
+        <p class="headerp">
+          <a class="link" href="#about">About</a>
+          <a class="link" target="_blank" href="https://github.com/earthcubearchitecture-project418">Code</a>
+        </p>
+      </div>
     </div>
+    <div class="box subheader">
+      <div class="container">
+        <h1>fence.gleaner.io</h1>
+        <h3>Cloud based structured data tools</h3>
+      </div>
+    </div>
+    <div class="box sidebar"> </div>
+    <div class="box sidebar2"> </div>
+
+
+    <div style="margin-top:25px"  class="box content"> 
+
+      <div  class="media media-flip">
+        <a name="about"></a>
+        <div class="img">
+          <!-- <img src="./images/cdf.jpeg" alt="CDF"> -->
+        </div>
+        <h2 class="title">Dateset Landing Page Inspection</h2>
+        <div class="content">
+          <p>
+          Extract and validate a JSON-LD schema.org type dataset package from the provided URL.
+          </p>
+          <p>
+          Try examples from <a href="./fence?url=http://opencoredata.org/doc/dataset/b8d7bd1b-ef3b-4b08-a327-e28e1420adf0">Open Core Data</a> 
+          or <a href="./fence?url=https://www.bco-dmo.org/dataset/722472">BCO-DMO</a> 
+          </p>
+        </div>
+        <div class="footer">
+         <form action="/fence" method="get">
+           <div>
+             <label for="url">Dataset Landing Page URL</label><br>
+             <input type="text" id="url" name="url">
+           </div>
+         </form>
+        </div>
+      </div>
+
+      <div  class="media media-flip">
+        <a name="about"></a>
+        <div class="img">
+          <!-- <img src="./images/cdf.jpeg" alt="CDF"> -->
+        </div>
+        <h2 class="title">Sitemap check</h2>
+        <div class="content">
+          <p>
+             Check a sitemap structure and optionally last mod entry.
+             <a href="./sitemap?url=https://www.bco-dmo.org/sitemap.xml/722472&date=01 Jan 20 10:00 UTC">BCO-DMO example.</a>
+          </p>
+        </div>
+        <div class="footer">
+          <form action="/sitemap" method="get">
+           <div>
+             <label for="url">Sitemap URL:</label><br>
+             <input type="text" id="url" name="url"> <br>
+             <label for="date">Optional date threshold (format: 01 Jan 20 10:00 UTC)</label><br>
+             <input type="text" id="date" name="date">
+             <br>
+             <div>
+               <button>Test</button>
+             </div>
+           </div>
+         </form>
+        </div>
+      </div>
+
+      <div  class="media media-flip">
+        <a name="about"></a>
+        <div class="img">
+          <!-- <img src="./images/cdf.jpeg" alt="CDF"> -->
+        </div>
+        <h2 class="title">Framing</h2>
+        <div class="content">
+          <p>Framing, a JSON-LD data graph from a resource URL to extract specific elements.
+          </p><p>
+          Try examples from <a href="./frame?url=http://opencoredata.org/doc/dataset/b8d7bd1b-ef3b-4b08-a327-e28e1420adf0&frame=literals">Open Core Data</a> 
+          or <a href="./frame?url=https://www.bco-dmo.org/dataset/722472&frame=literals">BCO-DMO</a> 
+        You can also try  <a href="https://gist.githubusercontent.com/fils/8738793069ae18fc368f04b2ace7118d/raw/7de6217d8f67e28f8593ac132c76954399c89307/spatialtest.jsonld">
+          this gist</a>
+          to test more complex spatial examples.  You will need use it at the resource URL below.  
+        
+        </p>
+
+        </div>
+        <div class="footer">
+          <form action="/frame" method="get">
+
+            <div>
+              <label for="url">Resource URL</label><br>
+              <input type="text" id="url" name="url">
+            </div>
+            <div>
+              <select id="frame" name="frame">
+               <option value = "literals">Frame keywords, description and name</option>
+               <option value = "spatial">Frame spatial information</option>
+             </select>
+            </div>
+             <div>
+               <button>Test</button>
+             </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- <div class="box bodyfooter">
+    <p>Funded by NSF / EarthCube</p>
+  </div> -->
+
 </body>
 
 </html>

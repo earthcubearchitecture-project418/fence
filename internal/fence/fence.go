@@ -49,8 +49,8 @@ func Render(w http.ResponseWriter, r *http.Request) {
 			sdo = string(body)
 
 		} else {
-			// sdo, err = getSDO(url)
-			sdo, err = headless(url)
+			sdo, err = GetSDO(url)
+			// sdo, err = headless(url)
 			// sdo, err = getLink(url)
 			if err != nil {
 				sdo = "{}"
@@ -71,9 +71,9 @@ func Render(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-// getSDO needs to take a URL and then get the SDO from it
+// GetSDO needs to take a URL and then get the SDO from it
 // if it can.
-func getSDO(urlloc string) (string, error) {
+func GetSDO(urlloc string) (string, error) {
 
 	// sdo := sdo()
 	// urlloc := "http://opencoredata.org/doc/dataset/b8d7bd1b-ef3b-4b08-a327-e28e1420adf0"
@@ -112,8 +112,7 @@ func getSDO(urlloc string) (string, error) {
 		})
 	}
 
-	// return sdo, nil
-	return jsonld, nil
+	return jsonld, err
 }
 
 func isValid(jsonld string) error {

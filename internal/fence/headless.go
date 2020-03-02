@@ -13,6 +13,9 @@ import (
 	"github.com/mafredri/cdp/devtool"
 )
 
+// try to move to https://github.com/mafredri/cdp
+// in a headlessv2 version of this function
+
 func headless(urlloc string) (string, error) {
 
 	log.Println("Headless call in flight")

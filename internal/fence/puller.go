@@ -16,7 +16,7 @@ func Pull(w http.ResponseWriter, r *http.Request) {
 	var err error
 
 	if url != "" {
-		sdo, err = getSDO(url)
+		sdo, err = GetSDO(url)
 		if err != nil {
 			sdo = "{}"
 		}
