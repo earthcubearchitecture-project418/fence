@@ -1,7 +1,9 @@
 package fence
 
 import (
+	"bytes"
 	"encoding/json"
+	"io"
 	"io/ioutil"
 	"log"
 	"net/http"
@@ -33,6 +35,9 @@ type SpatialFD struct {
 
 // Frame performs the JSON-LD framing call
 func Frame(w http.ResponseWriter, r *http.Request) {
+
+	ct := r.Header.Get("Accept")
+	log.Println(ct)
 
 	var err error
 	vars := mux.Vars(r)
@@ -81,30 +86,83 @@ func Frame(w http.ResponseWriter, r *http.Request) {
 		sfr := DataLiterial(sdo)
 		data := toCSVQuick(sfr)
 
-		// data literal frame
-		ht, err := template.New("Template").ParseFiles(templateFile) //open and parse a template text file
-		if err != nil {
-			log.Printf("template parse failed: %s", err)
+		// // check out return type here..
+
+		ct := r.Header.Get("Accept") //  strings.Contains(ct, "text/html")
+		log.Println(ct)
+
+		// set output if no text/html
+		// set default to octet stream?  but use stored if I have it
+		if !strings.Contains(ct, "html") {
+			w.Header().Set("Content-Type", "application/ld+json")
+			// send the bytes
+			jd, err := json.MarshalIndent(data, "", " ")
+			if err != nil {
+				log.Println(err)
+			}
+			r := bytes.NewReader(jd)
+
+			n, err := io.Copy(w, r)
+			if err != nil {
+				log.Println("Issue with writing bytes to http response")
+				log.Println(err)
+			}
+			log.Printf("NEW :   Sent %d bytes\n", n)
+
+		} else {
+			// data literal frame
+			ht, err := template.New("Template").ParseFiles(templateFile) //open and parse a template text file
+			if err != nil {
+				log.Printf("template parse failed: %s", err)
+			}
+
+			err = ht.ExecuteTemplate(w, "Q", data)
+			if err != nil {
+				log.Printf("Template execution failed: %s", err)
+			}
+
 		}
 
-		err = ht.ExecuteTemplate(w, "Q", data)
-		if err != nil {
-			log.Printf("Template execution failed: %s", err)
-		}
 	} else {
 		templateFile := "./web/templates/spatialframe.html"
 
 		sfr := SpatialFrame(sdo)
 		data := spatiaTab(sfr)
 
-		ht, err := template.New("Template").ParseFiles(templateFile) //open and parse a template text file
-		if err != nil {
-			log.Printf("template parse failed: %s", err)
-		}
+		// // check out return type here..
 
-		err = ht.ExecuteTemplate(w, "Q", data)
-		if err != nil {
-			log.Printf("Template execution failed: %s", err)
+		ct := r.Header.Get("Accept") //  strings.Contains(ct, "text/html")
+		log.Println(ct)
+
+		// set output if no text/html
+		// set default to octet stream?  but use stored if I have it
+		if !strings.Contains(ct, "html") {
+			w.Header().Set("Content-Type", "application/ld+json")
+			// send the bytes
+			jd, err := json.MarshalIndent(data, "", " ")
+			if err != nil {
+				log.Println(err)
+			}
+			r := bytes.NewReader(jd)
+
+			n, err := io.Copy(w, r)
+			if err != nil {
+				log.Println("Issue with writing bytes to http response")
+				log.Println(err)
+			}
+			log.Printf("NEW :   Sent %d bytes\n", n)
+
+		} else {
+
+			ht, err := template.New("Template").ParseFiles(templateFile) //open and parse a template text file
+			if err != nil {
+				log.Printf("template parse failed: %s", err)
+			}
+
+			err = ht.ExecuteTemplate(w, "Q", data)
+			if err != nil {
+				log.Printf("Template execution failed: %s", err)
+			}
 		}
 	}
 }

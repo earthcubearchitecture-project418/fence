@@ -71,12 +71,8 @@ func spatiaTab(records string) []SpatialFD {
 			fda = append(fda, fd)
 			return true // keep iterating
 		})
-
 		// for _, geo := range result.Array() {
 		// 	println(geo.String())
-
-		// }
-		// loop and append on the array as noted in https://github.com/tidwall/gjson
 	} else if gjson.Get(records, "0.spatialCoverage.geo.type").Exists() {
 		println("Single spatial element mode")
 		fd := SpatialFD{}
@@ -84,11 +80,10 @@ func spatiaTab(records string) []SpatialFD {
 		fd.Latitude = gjson.Get(records, "0.spatialCoverage.geo.latitude").String()
 		fd.Longitude = gjson.Get(records, "0.spatialCoverage.geo.longitude").String()
 		fd.Line = gjson.Get(records, "0.spatialCoverage.geo.line").String()
+		fd.Polygon = gjson.Get(records, "0.spatialCoverage.geo.polygon").String()
+		fd.Box = gjson.Get(records, "0.spatialCoverage.geo.box").String()
 		fda = append(fda, fd)
 	}
-
-	// log.Println("From spatialTab function")
 	// log.Println(fd)
-
 	return fda
 }

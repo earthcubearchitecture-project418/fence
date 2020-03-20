@@ -28,3 +28,20 @@ Headless test URL
 
 https://arcticdata.io/catalog/view/doi:10.18739/A28P5V92S
 
+
+{
+        "@context":  "http://schema.org/",
+        "@explicit": true,
+        "@type":     "Dataset",
+        "variableMeasured":  {
+           "@explicit": true,
+            "@type": "PropertyValue",
+            "description": "",
+          "name": "",
+          "url": "",
+          "unitText": ""
+        }
+}
+
+
+

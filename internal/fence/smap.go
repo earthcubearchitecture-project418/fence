@@ -1,9 +1,13 @@
 package fence
 
 import (
+	"bytes"
+	"encoding/json"
 	"fmt"
+	"io"
 	"log"
 	"net/http"
+	"strings"
 	"time"
 
 	"github.com/alecthomas/template"
@@ -24,6 +28,9 @@ type MapData struct {
 // This function is here only in the thought this could be a dynamic list at some point.
 func Check(w http.ResponseWriter, r *http.Request) {
 	templateFile := "./web/templates/sitemap.html"
+
+	ct := r.Header.Get("Accept") //  strings.Contains(ct, "text/html")
+	log.Println(ct)
 
 	var err error
 	vars := mux.Vars(r)
@@ -54,14 +61,32 @@ func Check(w http.ResponseWriter, r *http.Request) {
 
 	data := MapData{MapLen: len(smap.URL), CheckLen: len(c), ErrorLen: len(o), URLs: c, ErrorURLs: o}
 
-	ht, err := template.New("Template").ParseFiles(templateFile) //open and parse a template text file
-	if err != nil {
-		log.Printf("template parse failed: %s", err)
-	}
+	if !strings.Contains(ct, "html") {
+		w.Header().Set("Content-Type", "application/ld+json")
+		// send the bytes
+		jd, err := json.MarshalIndent(data, "", " ")
+		if err != nil {
+			log.Println(err)
+		}
+		r := bytes.NewReader(jd)
 
-	err = ht.ExecuteTemplate(w, "Q", data)
-	if err != nil {
-		log.Printf("Template execution failed: %s", err)
+		n, err := io.Copy(w, r)
+		if err != nil {
+			log.Println("Issue with writing bytes to http response")
+			log.Println(err)
+		}
+		log.Printf("NEW :   Sent %d bytes\n", n)
+
+	} else {
+		ht, err := template.New("Template").ParseFiles(templateFile) //open and parse a template text file
+		if err != nil {
+			log.Printf("template parse failed: %s", err)
+		}
+
+		err = ht.ExecuteTemplate(w, "Q", data)
+		if err != nil {
+			log.Printf("Template execution failed: %s", err)
+		}
 	}
 }
 
