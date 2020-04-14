@@ -16,7 +16,7 @@ func SpatialFrame(jsonld string) string {
 	frame := map[string]interface{}{
 		"@context":  "http://schema.org/",
 		"@explicit": true,
-		"@type":     "Dataset",
+		// "@type":     "Dataset",
 		"spatialCoverage": map[string]interface{}{
 			"@type": "Place",
 			"geo":   map[string]interface{}{},
@@ -42,8 +42,8 @@ func SpatialFrame(jsonld string) string {
 		log.Println("Error trying to marshal data", err)
 	}
 
-	log.Println("From Frame function")
-	log.Println(string(jsonm))
+	// log.Println("From Frame function")
+	// log.Println(string(jsonm))
 
 	return string(jsonm)
 }

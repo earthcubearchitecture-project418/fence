@@ -3,7 +3,6 @@ package fence
 import (
 	"bytes"
 	"encoding/json"
-	"fmt"
 	"io"
 	"log"
 	"net/http"
@@ -12,14 +11,14 @@ import (
 
 	"github.com/alecthomas/template"
 	"github.com/araddon/dateparse"
-	"github.com/gorilla/mux"
 	"github.com/yterajima/go-sitemap"
 )
 
 type MapData struct {
-	MapLen    int
-	CheckLen  int
-	ErrorLen  int
+	MapLen    int    `json:"urlcount"`
+	CheckLen  int    `json:"urlspastdate"`
+	ErrorLen  int    `json:"datesnotfound"`
+	Date      string `json:"filterdate"`
 	URLs      []string
 	ErrorURLs []string
 }
@@ -27,39 +26,23 @@ type MapData struct {
 // Check NOTE the so slice does nothing..  the template is just static content.
 // This function is here only in the thought this could be a dynamic list at some point.
 func Check(w http.ResponseWriter, r *http.Request) {
-	templateFile := "./web/templates/sitemap.html"
-
-	ct := r.Header.Get("Accept") //  strings.Contains(ct, "text/html")
-	log.Println(ct)
-
 	var err error
-	vars := mux.Vars(r)
+	ct := r.Header.Get("Accept") //  strings.Contains(ct, "text/html")
+	// vars := mux.Vars(r)
 	url := r.FormValue("url")
 	dc := r.FormValue("date")
 
-	log.Printf("vars: %v\n", vars)
-	log.Printf("url: %s\n", url)
-	log.Printf("dc: %s\n", dc)
-
 	smap, err := sitemap.Get(url, nil)
 	if err != nil {
-		fmt.Println(err)
+		log.Println(err)
 	}
 
-	log.Print(len(smap.URL))
-
-	c, o, err := dateCheck(smap, dc)
+	c, o, err := DateCheck(smap, dc)
 	if err != nil {
-		fmt.Println(err)
+		log.Println(err)
 	}
 
-	// // move sitemap.URL to []string
-	// u := make([]string, len(smap.URL))
-	// for i := range smap.URL {
-	// 	u[i] = smap.URL[i].Loc
-	// }
-
-	data := MapData{MapLen: len(smap.URL), CheckLen: len(c), ErrorLen: len(o), URLs: c, ErrorURLs: o}
+	data := MapData{MapLen: len(smap.URL), CheckLen: len(c), Date: dc, ErrorLen: len(o), URLs: c, ErrorURLs: o}
 
 	if !strings.Contains(ct, "html") {
 		w.Header().Set("Content-Type", "application/ld+json")
@@ -75,9 +58,10 @@ func Check(w http.ResponseWriter, r *http.Request) {
 			log.Println("Issue with writing bytes to http response")
 			log.Println(err)
 		}
-		log.Printf("NEW :   Sent %d bytes\n", n)
+		log.Printf("Sent %d bytes\n", n)
 
 	} else {
+		templateFile := "./web/templates/sitemap.html"
 		ht, err := template.New("Template").ParseFiles(templateFile) //open and parse a template text file
 		if err != nil {
 			log.Printf("template parse failed: %s", err)
@@ -94,30 +78,31 @@ func afterTime(lastmod, check time.Time) bool {
 	return lastmod.After(check)
 }
 
-func dateCheck(smap sitemap.Sitemap, date string) ([]string, []string, error) {
+// DateCheck uses a sitemap and date to filter URLs.  If date is null then all
+// URLs are added.  If date is not nil and date is not found in sitemap the URL
+// is added to the "error" array for the user to decide on.
+func DateCheck(smap sitemap.Sitemap, date string) ([]string, []string, error) {
 	var c []string
 	var o []string
 
 	for _, URL := range smap.URL {
-		if URL.LastMod != "" {
+		if URL.LastMod != "" && date != "" {
 			t, err := dateparse.ParseAny(URL.LastMod)
 			if err != nil {
 				log.Println(err)
 				o = append(o, URL.Loc)
 			}
-			check, _ := time.Parse(time.RFC822, date)
+			check, err := time.Parse(time.RFC822, date)
+			if err != nil {
+				log.Println(err)
+			}
 			q := afterTime(t, check)
 			if q {
 				c = append(c, URL.Loc)
 			}
 		} else {
-			o = append(o, URL.Loc)
+			c = append(c, URL.Loc)
 		}
-	}
-
-	if len(o) > 0 {
-		log.Println("errors in the data parsing")
-		return c, o, nil
 	}
 
 	return c, o, nil

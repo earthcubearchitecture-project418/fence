@@ -86,6 +86,7 @@ func GetSDO(urlloc string) (string, error) {
 	}
 
 	req.Header.Set("User-Agent", "EarthCube_DataBot/1.0")
+	req.Header.Set("Accept", "text/html") // TODO we need to think about content negotiation request json-Ld too!
 
 	resp, err := client.Do(req)
 	if err != nil {

@@ -79,6 +79,8 @@ func Frame(w http.ResponseWriter, r *http.Request) {
 		}
 	}
 
+	// TODO convert to case switch and route out to other functions
+
 	if fr == "literals" {
 		templateFile := "./web/templates/frame.html"
 
