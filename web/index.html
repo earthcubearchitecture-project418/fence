@@ -90,16 +90,30 @@
         <h2 class="title">Framing</h2>
         <div class="content">
           <p>Framing, a JSON-LD data graph from a resource URL to extract specific elements.
-          </p><p>
+          </p>
+          <p>
           Try examples from <a href="./frame?url=http://opencoredata.org/doc/dataset/b8d7bd1b-ef3b-4b08-a327-e28e1420adf0&frame=literals">Open Core Data</a> 
           or <a href="./frame?url=https://www.bco-dmo.org/dataset/722472&frame=literals">BCO-DMO</a> 
         You can also try  <a href="https://gist.githubusercontent.com/fils/8738793069ae18fc368f04b2ace7118d/raw/7de6217d8f67e28f8593ac132c76954399c89307/spatialtest.jsonld">
           this gist</a>
           to test more complex spatial examples.  
-          (<a href="https://fence.gleaner.io/frame?url=https%3A%2F%2Fgist.githubusercontent.com%2Ffils%2F8738793069ae18fc368f04b2ace7118d%2Fraw%2F7de6217d8f67e28f8593ac132c76954399c89307%2Fspatialtest.jsonld&frame=spatial">
+          (<a href="./frame?url=https%3A%2F%2Fgist.githubusercontent.com%2Ffils%2F8738793069ae18fc368f04b2ace7118d%2Fraw%2F7de6217d8f67e28f8593ac132c76954399c89307%2Fspatialtest.jsonld&frame=spatial">
           frame gist for spatial</a>)
-           
-        
+        </p>
+        <p>
+          GeoJSON mapping tests:<br>
+          <ul>
+            <li>
+              <a href="./spatial?url=https%3A%2F%2Fgist.githubusercontent.com%2Ffils%2F8738793069ae18fc368f04b2ace7118d%2Fraw%2F7de6217d8f67e28f8593ac132c76954399c89307%2Fspatialtest.jsonld&frame=spatial">
+                frame gist for geojson viewing</a>
+            </li>
+            <li>
+              <a href="./spatial?url=https://www.bco-dmo.org/dataset/722472&frame=literals">BCO-DMO data set landing page (not working yet..)</a> 
+            </li>
+            <li>
+              <a href="./spatial?url=http://opencoredata.org/doc/dataset/b8d7bd1b-ef3b-4b08-a327-e28e1420adf0&frame=literals">Open Core Data</a> 
+            </li>
+          </ul>
         </p>
 
         </div>
@@ -107,7 +121,7 @@
           <form action="/frame" method="get">
 
             <div>
-              <label for="url">Resource URL</label><br>
+              <label for="url">Frame URL</label><br>
               <input type="text" id="url" name="url">
             </div>
             <div>
@@ -120,8 +134,26 @@
                <button>Test</button>
              </div>
           </form>
+
+
+          <form action="/spatial" method="get">
+
+            <div>
+              <label for="url">GeoJSON from URL</label><br>
+              <input type="text" id="url" name="url">
+            </div>
+             <div>
+               <button>Test</button>
+             </div>
+          </form>
+
         </div>
       </div>
+
+
+
+
+
     </div>
   </div>
   <!-- <div class="box bodyfooter">

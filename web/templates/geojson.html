@@ -1,0 +1,154 @@
+{{define "Q"}}
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Fence: Frame Report</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width" initial-scale="1.0">
+
+    <link rel="stylesheet" href="./css/fencegrid.css ">
+    <link rel="stylesheet" href="./css/nav.css ">
+    <link rel="stylesheet" href="./css/componentshowcase.css ">
+
+    <!-- use google  font -->
+    <link href="//fonts.googleapis.com/css?family=Open Sans&subset=latin" rel="stylesheet" type="text/css">
+    <link rel='stylesheet' href='//cdn.jsdelivr.net/font-hack/2.020/css/hack.min.css'>
+
+    <script src="https://unpkg.com/rbush@2.0.1/rbush.js"></script>
+    <link rel="stylesheet" href="https://openlayers.org/en/v5.3.0/css/ol.css" type="text/css">
+
+    <!-- leaflet stuff-->
+    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css"/>
+    <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+<!-- 
+    <link rel="stylesheet" href="/common/js/markercluster/dist/MarkerCluster.css" />
+	<link rel="stylesheet" href="/common/js/markercluster/dist/MarkerCluster.Default.css" />
+    <script src="/common/js/markercluster/dist/leaflet.markercluster-src.js"></script>
+     -->
+    <style>
+        #map{ height: 400px }
+      </style>
+
+
+</head>
+
+<body>
+    <div class="grid ">
+        <div class="title ">
+            <nav class="container">
+                <div class="m1">
+                    <a href="/" class="navLinks"> << fence.gleaner.io</a>
+                </div>
+            </nav>
+        </div>
+        <div class="header">
+            <h1>GeoJSON Report</h1>
+        </div>
+        <div class="lsidebar"> </div>
+        <div class="sidebar"> </div>
+
+        <div class="content">
+            <div>
+                <!-- <form action="/sitemap" method="get">
+                    <div>
+                        <label for="url">Sitemap check:</label><br>
+                        <input type="text" id="url" name="url"> <br>
+                        <label for="date">Date (format: 01 Jan 20 10:00 UTC)</label><br>
+                        <input type="text" id="date" name="date">
+                        <br>
+                        <div>
+                            <button>Test</button>
+                          </div>
+                    </div>
+                </form> -->
+
+            </div>
+
+            <div id="container1">
+                <div id="map"></div>
+                <div class="cebox">
+                    <code>
+                        {{.}}
+                    </code>
+                </div>
+            </div>
+
+        </div>
+        <div class="footer ">
+            <small>Project 418 is funded by the National Science Foundation through the EarthCube Science Support Office
+                (ESSO)</small>
+        </div>
+    </div>
+
+
+<script>
+
+   // Create the map
+	//refs:  https://gist.github.com/alexgleith/7112515
+
+	
+
+	// Set up the ESRI tiles and the initial map object        
+	var tiles = L.tileLayer(
+		'https://server.arcgisonline.com/ArcGIS/rest/services/Ocean_Basemap/MapServer/tile/{z}/{y}/{x}', {
+			maxZoom: 7,
+			attribution: '&copy; ESRI'
+		}),
+
+		latlng = L.latLng(0.78, 102.37);
+
+	var map = L.map('map', {
+		center: latlng,
+		zoom: 5,
+		layers: [tiles]
+	});
+
+	// Get the ocean data
+	var geoJsonData = {{.}}
+	var geojsonMarkerOptions = {
+		radius: 10,
+		fillColor: "rgb(255,0,195)",
+		color: "#fff",
+		weight: 2,
+		opacity: 1,
+		fillOpacity: 1
+    };
+    
+    console.log(geoJsonData)
+
+	var geojson = L.geoJson(geoJsonData, {
+		pointToLayer: function (feature, latlng) {
+			var popupOptions = {
+				maxWidth: 300
+			};
+			var popupContent = "<a href='" + "feature.properties.URI" + "'>this</a>";
+			console.log(feature);
+			return L.circleMarker(latlng, geojsonMarkerOptions).bindPopup(popupContent, popupOptions);
+		}
+	});
+
+	// // Marker cluster settings
+	// var markers = L.markerClusterGroup({
+	// 	spiderfyOnMaxZoom: false,
+	// 	showCoverageOnHover: true,
+	// 	zoomToBoundsOnClick: true,
+	// 	disableClusteringAtZoom: 6
+	// });
+
+	// Finish adding things to the map and present
+	// markers.addLayer(geojson);
+	map.addLayer(geojson);
+
+	map.fitBounds(geojson.getBounds());
+	// markers.addTo(map)
+	$("#info").fadeOut(500);
+
+    </script>
+
+
+
+</body>
+
+</html>
+{{end}}

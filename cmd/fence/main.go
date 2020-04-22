@@ -5,7 +5,11 @@ import (
 	"net/http"
 	"os"
 
-	"../../internal/fence"
+	"../../internal/fence/core"
+	"../../internal/fence/framing"
+	"../../internal/fence/sitemap"
+	"../../internal/fence/spatial"
+
 	"github.com/gorilla/mux"
 )
 
@@ -20,21 +24,25 @@ func main() {
 	http.Handle("/", &MyServer{htmlRouter})
 
 	fc := mux.NewRouter()
-	fc.HandleFunc("/fence", fence.Render)
+	fc.HandleFunc("/fence", core.Render)
 	http.Handle("/fence", fc)
 
 	fp := mux.NewRouter()
-	fp.HandleFunc("/fencepull", fence.Pull)
+	fp.HandleFunc("/fencepull", core.Pull)
 	http.Handle("/fencepull", fp)
 
 	cp := mux.NewRouter()
-	cp.HandleFunc("/sitemap", fence.Check)
+	cp.HandleFunc("/sitemap", sitemap.Check)
 	http.Handle("/sitemap", cp)
 
 	// TODO   combine frames into one with routing based on form request
 	fr := mux.NewRouter()
-	fr.HandleFunc("/frame", fence.Frame)
+	fr.HandleFunc("/frame", framing.Frame)
 	http.Handle("/frame", fr)
+
+	gj := mux.NewRouter()
+	gj.HandleFunc("/spatial", spatial.GeoJSON)
+	http.Handle("/spatial", gj)
 
 	// sf := mux.NewRouter()
 	// sf.HandleFunc("/spatialframe", fence.SpatialRes)
