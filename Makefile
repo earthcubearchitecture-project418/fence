@@ -22,4 +22,5 @@ tag:
 publishgcr:
 	docker push gcr.io/top-operand-112611/p418fence:$(DOCKERVER)
 
-togcr: linux docker tag publishgcr
+full: linux docker dockerlatest publish tag publishgcr
+

@@ -61,7 +61,7 @@ func Frame(w http.ResponseWriter, r *http.Request) {
 	case "spatial":
 		templateFile = "./web/templates/spatialframe.html"
 		sfr = SpatialFrame(sdo)
-		data = SpatialTab(sfr)
+		data = SpatialTabv2(sfr)
 	default:
 		fmt.Println("three")
 	}

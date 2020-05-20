@@ -13,6 +13,11 @@ import (
 	"github.com/gorilla/mux"
 )
 
+func init() {
+	log.SetFlags(log.Lshortfile)
+	// log.SetOutput(ioutil.Discard) // turn off all logging
+}
+
 // MyServer struct for mux router
 type MyServer struct {
 	r *mux.Router

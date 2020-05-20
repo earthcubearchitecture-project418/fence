@@ -67,5 +67,7 @@ func GetSDO(urlloc string) (string, error) {
 		})
 	}
 
+	log.Println(jsonld)
+
 	return jsonld, err
 }
